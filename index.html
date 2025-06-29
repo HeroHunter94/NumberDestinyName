@@ -1,0 +1,384 @@
+<!--1. Calcular el número de Destino. Se calcula sumando los dígitos de la fecha completa de nacimiento (día, mes y año) 
+hasta obtener un solo dígito (o un número maestro como 11, 22).
+
+Ejemplo, para Barack Obama que nació un 4 de agosto de 1961
+
+En primer lugar, deberás limpiar la fecha recibida en texto y convertirla a número:
+
+Luego reducir:
+
+Vuelta 1: 1 + 9 + 6 + 1 + 0 + 8 + 0 + 4 = 29
+Vuelta 2: 2 + 9 = 11 ( no continuamos reduciendo )
+El significado lo buscas en el siguiente array de objetos:
+
+Significado Números de Destino
+const numeroDestino = [
+  {
+    numero: 1,
+    significado: 'Liderazgo, independencia, iniciativa.'
+  },
+  {
+    numero: 2,
+    significado: 'Diplomacia, cooperación, sensibilidad.'
+  },
+  {
+    numero: 3,
+    significado: 'Creatividad, expresión, alegría.'
+  },
+  {
+    numero: 4,
+    significado: 'Estabilidad, trabajo duro, organización.'
+  },
+  {
+    numero: 5,
+    significado: 'Aventura, libertad, versatilidad.'
+  },
+  {
+    numero: 6,
+    significado: 'Armonía, responsabilidad, servicio.'
+  },
+  {
+    numero: 7,
+    significado: 'Intuición, análisis, espiritualidad.'
+  },
+  {
+    numero: 8,
+    significado: 'Ambición, éxito material, poder.'
+  },
+  {
+    numero: 9,
+    significado: 'Humanitarismo, compasión, sabiduría.'
+  },
+  {
+    numero: 11,
+    significado: 'Inspiración, idealismo, creatividad y expresión. 
+    Sanadores y motivadores'
+  },
+  {
+    numero: 22,
+    significado: 'Visionario/a para transformar el mundo. 
+    Construcción, manifestación, pragmatismo.'
+  }
+]
+    
+2. Calcular Número del Nombre. En numerología, el número del nombre se calcula asignando un valor numérico a cada 
+letra del nombre completo (nombre y apellidos). Según la numerología, el número del nombre puede revelar rasgos de personalidad potenciales.
+
+La tabla de valores para las letras es la siguiente:
+
+Valores de las letras en Numerología
+A, J, S = 1	B, T = 2	C, Ç, L, U = 3	D, M = 4	E, N, Ñ, W = 5	F, O, X = 6	G, P, Y = 7	H, Q, Z = 8	I, R = 9	K = 11	V = 22
+Luego, se reduce el número resultante del paso anterior hasta obtener un solo dígito a menos que el número sea maestro. 
+Ejemplo, tomemos el nombre completo de Shakira.
+
+Su nombre completo es: SHAKIRA ISABEL MEBARAK RIPOLL
+
+Eliminamos espacios y sumamos:
+
+S	H	A	K	I	R	A	I	S	A	B	E	L	M	E	B	A	R	A	K	R	I	P	O	L	L	 
+1+	8+	1+	11+	9+	9+	1+	9+	1+	1+	2+	5+	3+	4+	5+	2+	1+	9+	1+	11+	9+	9+	7+	6+	3+	3=	131
+★ Vuelta 1: 1 + 3 + 1 = 5 (sólo hace falta 1 vuelta)
+
+El significado se busca en el siguiente array de objetos:
+
+Significado del Número del Nombre
+const numerosNombre = [
+  {
+    numero: 1,
+    personalidad: 'Pionero e Innovador'
+  },
+  {
+    numero: 2,
+    personalidad: 'Solidario y buen gestor'
+  },  
+  {
+    numero: 3,
+    personalidad: 'Consejero y motivador'
+  },
+  {
+    numero: 4,
+    personalidad: 'Disciplinado y ejecutor'
+  },
+  {
+    numero: 5,
+    personalidad: 'Espíritu libre'
+  },
+  {
+    numero: 6,
+    personalidad: 'Protector y responsable'
+  },
+  {
+    numero: 7,
+    personalidad: 'Especialista y perfeccionista'
+  },
+  {
+    numero: 8,
+    personalidad: 'Gran estratega'
+  },
+  {
+    numero: 9,
+    personalidad: 'Genio creativo e idealista'
+  },
+  {
+    numero: 11,
+    personalidad: 'Maestro transformador'
+  },
+  {
+    numero: 22,
+    personalidad: 'El poder puesto al servicio del espíritu'
+  }
+]-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Personal Number</title>
+    <link href="OIP.webp" type="icon" rel="shortcut icon" />
+    <style>
+        body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f4f4f9;
+  color: #333;
+  padding: 30px;
+  max-width: 600px;
+  margin: auto;
+}
+
+h1 {
+  color: #4b0082;
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+label {
+  display: block;
+  margin-top: 20px;
+  font-weight: bold;
+}
+
+input[type="text"],
+input[type="date"],
+select {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 16px;
+}
+
+button {
+  padding: 10px 20px;
+  margin-right: 10px;
+  background-color: #4b0082;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #6a0dad;
+}
+
+#output {
+  margin-top: 30px;
+  padding: 15px;
+  background-color: #e0d8f5;
+  border-left: 4px solid #4b0082;
+  border-radius: 6px;
+  font-size: 18px;
+}
+    </style>
+</head>
+
+<body>
+    <h1>Numerología</h1>
+    <label for="surname">Fullname</label>
+    <input id="surname" type="text" value="Paoli" required />
+    <input id="name" type="text" value="Gino" required /><br />
+    <label for="dBirth">Date of birth</label>
+    <input id="dBirth" type="date" required /><br />
+    <label for="question">What do you wish to calculate?</label>
+    <select id="scelta">
+        <option value="1" selection>1. Numero Personal</option>
+        <option value="2">2. Destiny Number</option>
+        <option value="3">3. Name Number</option>
+    </select>
+    <button type="button" onclick="calculate()">Calculate</button>
+    <button type="button" onclick="information()">Information</button>
+    <p id="output"></p>
+    <script src="arrayObj.js"></script>
+    <script>
+        const NAME = document.getElementById("name");
+        const SURNAME = document.getElementById("surname");
+        const BIRTH = document.getElementById("dBirth");
+        const SCELTA = document.getElementById("scelta");
+        let interval;
+        function clean(){
+            document.getElementById("output").innerHTML = "";
+        }
+        function calculate() {
+            let name = NAME.value;
+            let surname = SURNAME.value;
+            let birth = BIRTH.value;
+            let scelta = SCELTA.value;
+            const dateBirth = new Date(BIRTH.value);
+            if (name == "") {
+                document.getElementById("output").innerHTML = "Please add your name";
+                interval = setTimeout(clean, 600);
+                return;
+            } else if (surname == "") {
+                document.getElementById("output").innerHTML = "Please add your surname";
+                interval = setTimeout(clean, 600);
+                return;
+            } else if (birth == "") {
+                document.getElementById("output").innerHTML =
+                    "Please add your date of birth";
+                interval = setTimeout(clean, 600);
+                return;
+            }
+
+            clearTimeout(interval);
+
+            if (scelta == 1) {
+                let dayBirth = dateBirth.getDate();
+                console.log(dayBirth);
+                document.getElementById(
+                    "output"
+                ).innerHTML = `Hey ${name} ${surname} your Personal Number is:   ${reductionMaestro(dayBirth)}`;
+            } else if (scelta == 2){
+                document.getElementById(
+                    "output"
+                ).innerHTML = `Hey ${name} ${surname} your Destiny Number is:   ${reductionMaestro(extractionDate(birth))}`;
+            } else if (scelta == 3){
+                let fullName = (name + surname).trim().toUpperCase();
+                console.log(fullName);
+                document.getElementById(
+                    "output"
+                ).innerHTML = `Hey ${name} ${surname} your Name Number is:   ${reductionMaestro(numberLetter(fullName))}`;
+            }
+        }
+        function information() {
+            let name = NAME.value;
+            let surname = SURNAME.value;
+            let birth = BIRTH.value;
+            let scelta = SCELTA.value;
+            
+            const dateBirth = new Date(BIRTH.value);
+            if (name == "") {
+                document.getElementById("output").innerHTML = "Please add your name";
+                interval = setTimeout(clean, 600);
+                return;
+            } else if (surname == "") {
+                document.getElementById("output").innerHTML = "Please add your surname";
+                interval = setTimeout(clean, 600);
+                return;
+            } else if (birth == "") {
+                document.getElementById("output").innerHTML = "Please add your date of birth";
+                interval = setTimeout(clean, 600);
+                return;
+            }
+            clearTimeout(interval);
+            if (scelta == 1){
+                let length = numerology.length;
+                let dayBirth = reductionMaestro(dateBirth.getDate());
+                let boolean = false;
+                let index;
+                for (let i = 0; i < length && !boolean; i++) {
+                    if (dayBirth == numerology[i].number) {
+                        boolean = true;
+                        index = i;
+                    }
+                }
+                document.getElementById(
+                    "output"
+                ).innerHTML = `Hey ${name} ${surname} This is the description of your personal number:   ${numerology[index].description
+                }`;
+            } else if (scelta == 2){
+                let length = destinyNumber.length;
+                let dayBirth = reductionMaestro(extractionDate(birth));
+                let boolean = false;
+                let index;
+                for (let i = 0; i < length && !boolean; i++) {
+                    if (dayBirth == destinyNumber[i].number) {
+                        boolean = true;
+                        index = i;
+                    }
+                }
+                console.log(boolean);
+                document.getElementById(
+                    "output"
+                ).innerHTML = `Hey ${name} ${surname} This is the description of your personal number:   ${destinyNumber[index].meaning
+                }`;} else if (scelta == 3){
+                let fullName = (name + surname).trim().toUpperCase();
+                let length = numbersNameArr.length;
+                let nameNumb = reductionMaestro(numberLetter(fullName));
+                let boolean = false;
+                let index;
+                for (let i = 0; i < length && !boolean; i++) {
+                    if (nameNumb == numbersNameArr[i].numero) {
+                        boolean = true;
+                        index = i;
+                    }
+                }
+                console.log(boolean, nameNumb);
+                document.getElementById(
+                    "output"
+                ).innerHTML = `Hey ${name} ${surname} This is the description of your personal number:   ${numbersNameArr[index].personalidad
+                }`;}
+                
+                
+        }
+
+        function numberLetter(fullName){
+            let numberName = '';
+            let lengthName = fullName.length;
+            let arrayLength = letterNumberMap.length;
+            for (let i = 0; i < lengthName; i++){
+                 for (let j = 0; j < arrayLength; j++){
+                    if (fullName[i] == letterNumberMap[j].letter){
+                        numberName += letterNumberMap[j].number;
+                    }
+                }
+            }
+            console.log(numberName);
+            return numberName;
+        }
+        function reductionMaestro(numero) {
+            let numberReducted = numero;
+            const maestros = [11, 22];
+            while (numberReducted > 9 && !maestros.includes(numberReducted)) {
+                let sum = 0;
+                let digits = numberReducted.toString().split("");
+                //convierte los números a String y los incluye en un array
+                for (let i = 0; i < digits.length; i++) {
+                    sum += parseInt(digits[i]);
+                }
+                numberReducted = sum;
+            }
+            return numberReducted;
+        }
+
+        function extractionDate(birth){
+            let numbers = '0123456789';
+            let numberDate = '';
+            let length = birth.length;
+            for (let i = 0; i < length; i++){
+                if (numbers.includes(birth[i])){
+                    numberDate += birth[i];
+                }
+            }
+            numberDate = parseInt(numberDate);
+            return numberDate;
+        }
+
+    </script>
+</body>
+
+</html>
